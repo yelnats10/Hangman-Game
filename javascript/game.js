@@ -37,52 +37,66 @@ var wrong = [];
 document.onkeyup = function(event) {
 
  var userGuess = event.key;
- var movies = "<p>Guess the Movie</p>"; 
+ var movies = "<p>Guess the Movie</p><p>You can only be wrong 8 times</p>"; 
  document.querySelector("#subject").innerHTML = movies;
+ document.getElementById("hangman-good").innerHTML = replaceMe.join("");
  
+if (replaceMe.join("") === guess.join("")) {
 
- if (guess.indexOf(userGuess) < 0) {
-      wrong.push(userGuess);
+  return;
+} else {
 
-      var targetBad = document.getElementById("hangman-bad");
-      targetBad.innerHTML = wrong;
 
-    } else {
-      var mix = guess.indexOf(userGuess);
-      replaceMe[mix] = userGuess;
-      document.getElementById("hangman-good").innerHTML = replaceMe.join("");
+  if (wrong.length === 8) {
 
-        if (replaceMe.join("") === list[0]) {
+    var trailer = '<br><img src="images/hangman.gif">';
+              document.querySelector("#trailer").innerHTML = trailer;
+  
+} else {
 
-            var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/NUjMO_k9IF8?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-            document.querySelector("#trailer").innerHTML = trailer;
-        } else if (replaceMe.join("") === list[1]) {
 
-            var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/TbQm5doF_Uc?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-            document.querySelector("#trailer").innerHTML = trailer;
-        } else if (replaceMe.join("") === list[2]) {
+   if (guess.indexOf(userGuess) < 0) {
+        wrong.push(userGuess);
 
-            var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/SbXIj2T-_uk?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-            document.querySelector("#trailer").innerHTML = trailer;
-        } else if (replaceMe.join("") === list[3]) {
+        var targetBad = document.getElementById("hangman-bad");
+        targetBad.innerHTML = wrong;
 
-            var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/uPJVJBm9TPA?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-            document.querySelector("#trailer").innerHTML = trailer;
-        } else if (replaceMe.join("") === list[4]) {
+      } else {
+        var mix = guess.indexOf(userGuess);
+        replaceMe[mix] = userGuess;
+        document.getElementById("hangman-good").innerHTML = replaceMe.join("");
 
-            var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/qtlB7q96NMs?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-            document.querySelector("#trailer").innerHTML = trailer;
-        } else if (replaceMe.join("") === list[5]) {
+          if (replaceMe.join("") === list[0]) {
 
-            var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-            document.querySelector("#trailer").innerHTML = trailer;
-        } else if (replaceMe.join("") === list[6]) {
+              var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/NUjMO_k9IF8?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+              document.querySelector("#trailer").innerHTML = trailer;
+          } else if (replaceMe.join("") === list[1]) {
 
-            var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/4q5Mi9gWX8c?autoplay=1" frameborder="0" allowfullscreen></iframe>';
-            document.querySelector("#trailer").innerHTML = trailer;
-        } 
+              var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/TbQm5doF_Uc?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+              document.querySelector("#trailer").innerHTML = trailer;
+          } else if (replaceMe.join("") === list[2]) {
 
+              var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/SbXIj2T-_uk?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+              document.querySelector("#trailer").innerHTML = trailer;
+          } else if (replaceMe.join("") === list[3]) {
+
+              var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/uPJVJBm9TPA?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+              document.querySelector("#trailer").innerHTML = trailer;
+          } else if (replaceMe.join("") === list[4]) {
+
+              var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/qtlB7q96NMs?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+              document.querySelector("#trailer").innerHTML = trailer;
+          } else if (replaceMe.join("") === list[5]) {
+
+              var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+              document.querySelector("#trailer").innerHTML = trailer;
+          } else if (replaceMe.join("") === list[6]) {
+
+              var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/4q5Mi9gWX8c?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+              document.querySelector("#trailer").innerHTML = trailer;
+          } 
+        }
+      }
     }
-
 
 };

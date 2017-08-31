@@ -1,0 +1,13 @@
+body {
+	background-image: url(../images/movie.jpg); 
+	background-size: cover;
+}
+
+* {
+	color: white;
+
+}
+
+.box {
+	margin: 40% 33%;
+}
