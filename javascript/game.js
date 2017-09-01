@@ -49,8 +49,8 @@ if (replaceMe.join("") === guess.join("")) {
 
   if (wrong.length === 8) {
 
-    var trailer = '<br><img src="images/hangman.gif">';
-              document.querySelector("#trailer").innerHTML = trailer;
+    var gameOver = '<br><img src="images/hangman.gif">';
+              document.querySelector("#trailer").innerHTML = gameOver;
   
 } else {
 

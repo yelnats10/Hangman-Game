@@ -5,9 +5,13 @@ body {
 
 * {
 	color: white;
+	font-size: 24px;
 
 }
 
 .box {
-	margin: 40% 33%;
+	margin: 20% 20%;
+	text-align: center;
+
+/*	background-color: white;*/
 }
