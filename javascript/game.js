@@ -1,102 +1,132 @@
-
 //list to guess
 
-var list = ["watchmen", "frozen", "cars","taken","twins","scream","superbad"];
+var list = ["watchmen", "frozen", "cars","taken","twinsn","scream","superbad", "spaceballs"];
 
-
-//random pick one of the items in the list
+//random pick one of the movies in the list
 var pickedList = list[Math.floor(Math.random() * list.length)];
-
 
 //to take the random pickedList and break up each letter
 var guess = [];
 
-
+//sends each letter of the movie in pickedlist to create an array in guess
 for (var i = 0; i < pickedList.length; i++) {
     guess.push(pickedList.charAt(i));
-
 };
 
-//test to see if guess worked
+//Cheatsheet to know what the answer is
 console.log(guess);
 
-
-
+//contains all the empty values that the user has to guess
 var replaceMe = [];
 
+//add _ for every letter in guess and sends it to replaceMe
 for (var i = 0; i < guess.length; i++) {
     //push to an array
     // document.getElementById("hangman-good").innerHTML += "_ ";
     replaceMe.push("_ ");
   };
 
-console.log(replaceMe);
+//loads replaceMe on the first time you launch the page so you have an idea on guessing
+window.onload = function() {
+document.getElementById("hangman-good").innerHTML = replaceMe.join("");
+}
 
+//every letter that is wrong goes here
 var wrong = [];
 
+//starting point to count down from every mistake
+var counter = 10
+
+//used to loop through correct answers to help with duplicate letters
+var empty = replaceMe.length
+
+//The game begins now when pressing a key on the keyboard
 document.onkeyup = function(event) {
 
  var userGuess = event.key;
- var movies = "<p>Guess the Movie</p><p>You can only be wrong 8 times</p>"; 
+ var movies = "<p>Guess the Movie</p>"; 
  document.querySelector("#subject").innerHTML = movies;
  document.getElementById("hangman-good").innerHTML = replaceMe.join("");
- 
+
+
+//create a function on what happens when the user guess wrong 
+function guessWrong(userGuess) {
+
+    wrong.push(userGuess);
+    var targetBad = document.getElementById("hangman-bad");
+    targetBad.innerHTML = wrong;
+    counter--;
+    var mistakes = "<p>You have " + counter + " mistakes left</p>"; 
+    document.querySelector("#count-down").innerHTML = mistakes;
+     
+}
+
+//the parent IF that ends the user guess right and stops so that you can press anymore keys
 if (replaceMe.join("") === guess.join("")) {
 
   return;
 } else {
+//This section is if the user guessed wrong and helps keep the counter between 0 and 10
+        if (guess.indexOf(userGuess) < 0 && wrong.length != 10) {
 
+          if (wrong.indexOf(userGuess) < 0) {
 
-  if (wrong.length === 8) {
+           guessWrong(userGuess);
+//Needed to put this section here so that the games ends when you are wrong 10 times
+            if (wrong.length === 10) {
 
-    var gameOver = '<br><img src="images/hangman.gif">';
+              var gameOver = '<br><img src="images/hangman.gif">';
               document.querySelector("#trailer").innerHTML = gameOver;
-  
-} else {
+                        
+            }
+          }
+//This section is  if the user guessed right
+        } else {
+//This For Loop helps with duplicate letters that are correct            
+            for (var i = 0; i < empty; i++) {
+         
+              if (guess[i] === userGuess) {
+               
+                replaceMe[i] = userGuess;
+                document.getElementById("hangman-good").innerHTML = replaceMe.join("");
+              }
 
-
-   if (guess.indexOf(userGuess) < 0) {
-        wrong.push(userGuess);
-
-        var targetBad = document.getElementById("hangman-bad");
-        targetBad.innerHTML = wrong;
-
-      } else {
-        var mix = guess.indexOf(userGuess);
-        replaceMe[mix] = userGuess;
-        document.getElementById("hangman-good").innerHTML = replaceMe.join("");
-
-          if (replaceMe.join("") === list[0]) {
+//This section matches the correct answer with the movie trailer
+            if (replaceMe.join("") === list[0]) {
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/NUjMO_k9IF8?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
-          } else if (replaceMe.join("") === list[1]) {
+            } else if (replaceMe.join("") === list[1]) {
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/TbQm5doF_Uc?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
-          } else if (replaceMe.join("") === list[2]) {
+            } else if (replaceMe.join("") === list[2]) {
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/SbXIj2T-_uk?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
-          } else if (replaceMe.join("") === list[3]) {
+            } else if (replaceMe.join("") === list[3]) {
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/uPJVJBm9TPA?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
-          } else if (replaceMe.join("") === list[4]) {
+            } else if (replaceMe.join("") === list[4]) {
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/qtlB7q96NMs?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
-          } else if (replaceMe.join("") === list[5]) {
+            } else if (replaceMe.join("") === list[5]) {
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
-          } else if (replaceMe.join("") === list[6]) {
+            } else if (replaceMe.join("") === list[6]) {
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/4q5Mi9gWX8c?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
-          } 
-        }
-      }
-    }
+            } else if (replaceMe.join("") === list[7]) {
 
+              var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/dAuQ5hBZqqM?autoplay=1" frameborder="0" allowfullscreen></iframe>';
+              document.querySelector("#trailer").innerHTML = trailer;
+            }
+        }
+    }
+  
+}
 };
