@@ -37,6 +37,9 @@ var wrong = [];
 //starting point to count down from every mistake
 var counter = 10
 
+ var wins = 0;
+ var loses = 0;
+
 //used to loop through correct answers to help with duplicate letters
 var empty = replaceMe.length
 
@@ -45,9 +48,20 @@ document.onkeyup = function(event) {
 
  var userGuess = event.key;
  var movies = "<p>Guess the Movie</p>"; 
+
+function begin(){
  document.querySelector("#subject").innerHTML = movies;
  document.getElementById("hangman-good").innerHTML = replaceMe.join("");
+ points();
+}
 
+begin();
+
+function points() {
+ document.getElementById("score").innerHTML = 
+              "<p>Wins: " + wins + "</p>" +
+              "<p>Loses: " + loses + "</p>";
+}
 
 //create a function on what happens when the user guess wrong 
 function guessWrong(userGuess) {
@@ -56,10 +70,53 @@ function guessWrong(userGuess) {
     var targetBad = document.getElementById("hangman-bad");
     targetBad.innerHTML = wrong;
     counter--;
-    var mistakes = "<p>You have " + counter + " mistakes left</p>"; 
-    document.querySelector("#count-down").innerHTML = mistakes;
+
+    document.getElementById("counter").innerHTML = "<p>Tries Left: " + counter;
      
 }
+
+function guessReset() {
+
+    wrong.push();
+    var targetBad = document.getElementById("hangman-bad");
+    targetBad.innerHTML = wrong;
+
+    document.getElementById("counter").innerHTML = "<p>Tries Left: " + counter;
+     
+}
+
+function gameReset() {
+
+                wrong = [];
+                guess = [];
+                replaceMe = [];
+                pickedList = list[Math.floor(Math.random() * list.length)];
+
+                for (var i = 0; i < pickedList.length; i++) {
+                    guess.push(pickedList.charAt(i));
+                };
+
+                console.log(guess);
+                for (var i = 0; i < guess.length; i++) {
+                  //push to an array
+                  // document.getElementById("hangman-good").innerHTML += "_ ";
+                  replaceMe.push("_ ");
+                };
+
+                document.getElementById("hangman-good").innerHTML = replaceMe.join("");
+
+                guessReset();
+
+
+                begin();
+
+                document.getElementById("counter").innerHTML = "<p>Tries Left: " + counter;
+
+
+
+}
+
+
 
 //the parent IF that ends the user guess right and stops so that you can press anymore keys
 if (replaceMe.join("") === guess.join("")) {
@@ -74,9 +131,15 @@ if (replaceMe.join("") === guess.join("")) {
            guessWrong(userGuess);
 //Needed to put this section here so that the games ends when you are wrong 10 times
             if (wrong.length === 10) {
+              loses++;
+              points();
 
               var gameOver = '<br><img src="images/hangman.gif">';
               document.querySelector("#trailer").innerHTML = gameOver;
+
+              counter += 10;
+
+              gameReset();
                         
             }
           }
@@ -93,34 +156,50 @@ if (replaceMe.join("") === guess.join("")) {
 
 //This section matches the correct answer with the movie trailer
             if (replaceMe.join("") === list[0]) {
+              wins++;
+              points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/NUjMO_k9IF8?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[1]) {
+              wins++;
+              points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/TbQm5doF_Uc?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[2]) {
+              wins++;
+              points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/SbXIj2T-_uk?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[3]) {
+              wins++;
+              points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/uPJVJBm9TPA?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[4]) {
+              wins++;
+              points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/qtlB7q96NMs?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[5]) {
+              wins++;
+              points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[6]) {
+              wins++;
+              points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/4q5Mi9gWX8c?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[7]) {
+              wins++;
+              points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/dAuQ5hBZqqM?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
