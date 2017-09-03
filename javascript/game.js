@@ -1,6 +1,6 @@
 //list to guess
 
-var list = ["watchmen", "frozen", "cars","taken","twinsn","scream","superbad", "spaceballs"];
+var list = ["watchmen", "frozen", "cars","taken","twins","scream","superbad", "spaceballs"];
 
 //random pick one of the movies in the list
 var pickedList = list[Math.floor(Math.random() * list.length)];
@@ -72,6 +72,7 @@ function guessWrong(userGuess) {
     counter--;
 
     document.getElementById("counter").innerHTML = "<p>Tries Left: " + counter;
+    document.querySelector("#trailer").innerHTML = "<p></p>";
      
 }
 
@@ -87,32 +88,32 @@ function guessReset() {
 
 function gameReset() {
 
-                wrong = [];
-                guess = [];
-                replaceMe = [];
-                pickedList = list[Math.floor(Math.random() * list.length)];
+    userGuess = null;
+    wrong = [];
+    guess = [];
+    replaceMe = [];
+    
+    pickedList = list[Math.floor(Math.random() * list.length)];           
 
-                for (var i = 0; i < pickedList.length; i++) {
-                    guess.push(pickedList.charAt(i));
-                };
+    for (var i = 0; i < pickedList.length; i++) {
+        guess.push(pickedList.charAt(i));
+    };
 
-                console.log(guess);
-                for (var i = 0; i < guess.length; i++) {
+    console.log(guess);
+
+    for (var i = 0; i < guess.length; i++) {
                   //push to an array
                   // document.getElementById("hangman-good").innerHTML += "_ ";
-                  replaceMe.push("_ ");
-                };
+        replaceMe.push("_ ");
+    };
 
-                document.getElementById("hangman-good").innerHTML = replaceMe.join("");
+    document.getElementById("hangman-good").innerHTML = replaceMe.join("");
 
-                guessReset();
+    guessReset();
 
+    begin();
 
-                begin();
-
-                document.getElementById("counter").innerHTML = "<p>Tries Left: " + counter;
-
-
+    document.getElementById("counter").innerHTML = "<p>Tries Left: " + counter;
 
 }
 
@@ -129,6 +130,10 @@ if (replaceMe.join("") === guess.join("")) {
           if (wrong.indexOf(userGuess) < 0) {
 
            guessWrong(userGuess);
+           console.log(userGuess);
+
+
+
 //Needed to put this section here so that the games ends when you are wrong 10 times
             if (wrong.length === 10) {
               loses++;
@@ -152,53 +157,72 @@ if (replaceMe.join("") === guess.join("")) {
                
                 replaceMe[i] = userGuess;
                 document.getElementById("hangman-good").innerHTML = replaceMe.join("");
+                document.querySelector("#trailer").innerHTML = "<p></p>";
+                console.log(userGuess);
+
               }
 
 //This section matches the correct answer with the movie trailer
             if (replaceMe.join("") === list[0]) {
               wins++;
+              counter = counter - counter + 10;
+              gameReset();
               points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/NUjMO_k9IF8?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[1]) {
               wins++;
+                            counter = counter - counter + 10;
+              gameReset();
               points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/TbQm5doF_Uc?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[2]) {
               wins++;
+                            counter = counter - counter + 10;
+              gameReset();
               points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/SbXIj2T-_uk?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[3]) {
               wins++;
+                            counter = counter - counter + 10;
+              gameReset();
               points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/uPJVJBm9TPA?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[4]) {
               wins++;
+                            counter = counter - counter + 10;
+              gameReset();
               points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/qtlB7q96NMs?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[5]) {
               wins++;
+                            counter = counter - counter + 10;
+              gameReset();
               points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/AWm_mkbdpCA?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[6]) {
               wins++;
+                            counter = counter - counter + 10;
+              gameReset();
               points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/4q5Mi9gWX8c?autoplay=1" frameborder="0" allowfullscreen></iframe>';
               document.querySelector("#trailer").innerHTML = trailer;
             } else if (replaceMe.join("") === list[7]) {
               wins++;
+                            counter = counter - counter + 10;
+              gameReset();
               points();
 
               var trailer = '<iframe width="560" height="315" src="https://www.youtube.com/embed/dAuQ5hBZqqM?autoplay=1" frameborder="0" allowfullscreen></iframe>';
